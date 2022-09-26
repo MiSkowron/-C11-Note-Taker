@@ -4,7 +4,7 @@ const { readAndAppend, readFromFile } = require("../helpers/fsUtils");
 
 // GET Route for retrieving all the notes
 note.get("/", (req, res) =>
-  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
 // POST Route for submitting notes
