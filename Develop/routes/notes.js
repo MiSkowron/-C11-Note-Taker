@@ -32,4 +32,19 @@ note.post("/", (req, res) => {
   }
 });
 
+//Delete notes
+note.delete('/:id', (req, res) => {
+  const noteId = req.params.id;
+  readFromFile('./db/db.json').then((data) => {
+    const parsedData = JSON.parse(data);
+    const newArray = [];
+    for ( let i = 0; i < parsedData.length; i++){
+      if ( noteId != parsedData[i].id){
+        newArray.push(parsedData[i]);
+      }
+    }
+    writeToFile('./db/db.json', newArray);
+    res.json(newArray);
+  });
+});
 module.exports = note;
