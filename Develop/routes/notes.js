@@ -34,12 +34,13 @@ note.post("/", (req, res) => {
 
 //Delete notes
 note.delete('/:id', (req, res) => {
-  const noteId = req.params.id;
+  console.log('delete note');
+  const note = req.params.id;
   readFromFile('./db/db.json').then((data) => {
     const parsedData = JSON.parse(data);
     const newArray = [];
     for ( let i = 0; i < parsedData.length; i++){
-      if ( noteId != parsedData[i].id){
+      if ( note != parsedData[i].id){
         newArray.push(parsedData[i]);
       }
     }
@@ -47,4 +48,5 @@ note.delete('/:id', (req, res) => {
     res.json(newArray);
   });
 });
+
 module.exports = note;
